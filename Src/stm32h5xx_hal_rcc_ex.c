@@ -1741,7 +1741,8 @@ HAL_StatusTypeDef HAL_RCCEx_PeriphCLKConfig(const RCC_PeriphCLKInitTypeDef  *pPe
       /* Reset the Backup domain only if the RTC Clock source selection is modified from default */
       tmpregister = READ_BIT(RCC->BDCR, RCC_BDCR_RTCSEL);
 
-      if ((tmpregister != RCC_RTCCLKSOURCE_NO_CLK) && (tmpregister != pPeriphClkInit->RTCClockSelection))
+      if ((tmpregister != RCC_RTCCLKSOURCE_NO_CLK)
+          && (tmpregister != ((pPeriphClkInit->RTCClockSelection) & RCC_BDCR_RTCSEL)))
       {
         /* Store the content of BDCR register before the reset of Backup Domain */
         tmpregister = READ_BIT(RCC->BDCR, ~(RCC_BDCR_RTCSEL));
