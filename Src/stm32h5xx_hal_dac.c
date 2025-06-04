@@ -1226,6 +1226,7 @@ HAL_StatusTypeDef HAL_DAC_ConfigChannel(DAC_HandleTypeDef *hdac,
   uint32_t tickstart;
   uint32_t hclkfreq;
   uint32_t connectOnChip;
+  uint32_t isIcacheEn;
 
   /* Check the DAC peripheral handle and channel configuration struct */
   if ((hdac == NULL) || (sConfig == NULL))
@@ -1355,6 +1356,13 @@ HAL_StatusTypeDef HAL_DAC_ConfigChannel(DAC_HandleTypeDef *hdac,
   /* Configure for the selected DAC channel: mode, buffer output & on chip peripheral connect */
 
 #if !defined(TIM8)
+  /* For flash regions where caching is not practical, ICACHE has to be disable before access them */
+  isIcacheEn = HAL_ICACHE_IsEnabled();
+  if (isIcacheEn != 0UL)
+  {
+    HAL_ICACHE_Disable();
+  }
+
   /* Devices STM32H503xx */
   /* On STM32H503EB (package WLCSP25) DAC channel 1 connection to GPIO is not available and should not be configured.
      Package information is stored at the address PACKAGE_BASE, WLCSP25 correspond to the value 0xF (For more
@@ -1375,6 +1383,12 @@ HAL_StatusTypeDef HAL_DAC_ConfigChannel(DAC_HandleTypeDef *hdac,
       /* Update error code */
       SET_BIT(hdac->ErrorCode, HAL_DAC_ERROR_INVALID_CONFIG);
     }
+  }
+
+  /* Re-enable ICACHE if need */
+  if (isIcacheEn != 0UL)
+  {
+    HAL_ICACHE_Enable();
   }
 #endif /* Devices STM32H503xx */
 
