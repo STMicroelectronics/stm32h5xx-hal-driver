@@ -232,7 +232,8 @@ typedef struct
 #endif /* FLASH_SR_OBKERR */
 #define FLASH_ECC_AREA_OTP                FLASH_ECCR_OTP_ECC        /*!< FLASH OTP area                   */
 #if defined (FLASH_EDATAR_EDATA_EN)
-#define FLASH_ECC_AREA_EDATA              FLASH_ECCR_DATA_ECC       /*!< FLASH high-cycle data area       */
+#define FLASH_ECC_AREA_EDATA_BANK1        FLASH_ECCR_DATA_ECC       /*!< FLASH high-cycle data area       */
+#define FLASH_ECC_AREA_EDATA_BANK2        (FLASH_ECCR_DATA_ECC | FLASH_ECCR_BK_ECC)    /*!< FLASH high-cycle data area       */
 #endif /* FLASH_EDATAR_EDATA_EN */
 /**
   * @}
@@ -912,7 +913,12 @@ __weak void       HAL_FLASHEx_EccCorrectionCallback(void);
   */
 #define FLASH_TYPEPROGRAM_OB (0x00008000U | FLASH_NON_SECURE_MASK) /*!< Program Option Bytes operation type */
 #define FLASH_ADDRESS_OFFSET_OTP       (0x00000600U)               /*!< Flash address offset of OTP area */
+#if defined(STM32H533xx) || defined(STM32H523xx)
+#define FLASH_ADDRESS_OFFSET_EDATA     (0x00003000U)               /*!< Flash address offset of EDATA area */
+#else
 #define FLASH_ADDRESS_OFFSET_EDATA     (0x0000F000U)               /*!< Flash address offset of EDATA area */
+#endif /* STM32H533xx || STM32H523xx */
+#define FLASH_EDATA_BANK_SIZE          (0x0000C000U)               /*!< FLASH EDATA Bank Size */
 /**
   * @}
   */

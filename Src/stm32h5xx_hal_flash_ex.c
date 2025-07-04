@@ -1957,21 +1957,23 @@ void HAL_FLASHEx_GetEccInfo(FLASH_EccInfoTypeDef *pData)
         break;
 #endif /* FLASH_SR_OBKERR */
 #if defined (FLASH_EDATAR_EDATA_EN)
-      case FLASH_ECC_AREA_EDATA:
+      case FLASH_ECC_AREA_EDATA_BANK1:
         /* check flash high-cycle data bank */
-        if ((correction_reg & FLASH_ECCR_BK_ECC) == FLASH_ECCR_BK_ECC)
-        {
           /*
            * addr_reg is the address returned by the ECC register along with an offset value depends on area
            * To calculate the exact address set by user while an ECC occurred, we must subtract the offset value,
            * In addition, the address returned by ECC registers represents 128-bit flash word (multiply by 4),
           */
-          pData->Address = FLASH_EDATA_BASE + FLASH_BANK_SIZE + ((addr_reg - FLASH_ADDRESS_OFFSET_EDATA) * 4U);
-        }
-        else
-        {
           pData->Address = FLASH_EDATA_BASE + ((addr_reg - FLASH_ADDRESS_OFFSET_EDATA) * 4U);
-        }
+        break;
+      case FLASH_ECC_AREA_EDATA_BANK2:
+        /* check flash high-cycle data bank */
+          /*
+           * addr_reg is the address returned by the ECC register along with an offset value depends on area
+           * To calculate the exact address set by user while an ECC occurred, we must subtract the offset value,
+           * In addition, the address returned by ECC registers represents 128-bit flash word (multiply by 4),
+          */
+          pData->Address = FLASH_EDATA_BASE + FLASH_EDATA_BANK_SIZE + ((addr_reg - FLASH_ADDRESS_OFFSET_EDATA) * 4U);
         break;
 #endif /* FLASH_EDATAR_EDATA_EN */
       case FLASH_ECC_AREA_OTP:
