@@ -1917,7 +1917,7 @@ HAL_StatusTypeDef HAL_RTCEx_LockBootHardwareKey(const RTC_HandleTypeDef *hrtc)
   /* Prevent unused argument(s) compilation warning */
   UNUSED(hrtc);
 
-  WRITE_REG(TAMP->SECCFGR, TAMP_SECCFGR_BHKLOCK);
+  SET_BIT(TAMP->SECCFGR, TAMP_SECCFGR_BHKLOCK);
 
   return HAL_OK;
 }
