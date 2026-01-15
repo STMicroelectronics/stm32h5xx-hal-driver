@@ -983,11 +983,11 @@ typedef struct
 #define LL_GPDMA1_REQUEST_UART4_RX       27U     /*!< GPDMA1 HW request is UART4_RX      */
 #define LL_GPDMA1_REQUEST_UART4_TX       28U     /*!< GPDMA1 HW request is UART4_TX      */
 #endif /* UART4 */
-#if defined (UART4)
+#if defined (UART5)
 #define LL_GPDMA1_REQUEST_UART5_RX       29U     /*!< GPDMA1 HW request is UART5_RX      */
 #define LL_GPDMA1_REQUEST_UART5_TX       30U     /*!< GPDMA1 HW request is UART5_TX      */
 #endif /* UART5 */
-#if defined (UART4)
+#if defined (USART6)
 #define LL_GPDMA1_REQUEST_USART6_RX      31U     /*!< GPDMA1 HW request is USART6_RX     */
 #define LL_GPDMA1_REQUEST_USART6_TX      32U     /*!< GPDMA1 HW request is USART6_TX     */
 #endif /* USART6 */
@@ -1189,11 +1189,11 @@ typedef struct
 #define LL_GPDMA2_REQUEST_UART4_RX       27U     /*!< GPDMA2 HW request is UART4_RX      */
 #define LL_GPDMA2_REQUEST_UART4_TX       28U     /*!< GPDMA2 HW request is UART4_TX      */
 #endif /* UART4 */
-#if defined (UART4)
+#if defined (UART5)
 #define LL_GPDMA2_REQUEST_UART5_RX       29U     /*!< GPDMA2 HW request is UART5_RX      */
 #define LL_GPDMA2_REQUEST_UART5_TX       30U     /*!< GPDMA2 HW request is UART5_TX      */
 #endif /* UART5 */
-#if defined (UART4)
+#if defined (USART6)
 #define LL_GPDMA2_REQUEST_USART6_RX      31U     /*!< GPDMA2 HW request is USART6_RX     */
 #define LL_GPDMA2_REQUEST_USART6_TX      32U     /*!< GPDMA2 HW request is USART6_TX     */
 #endif /* USART6 */
