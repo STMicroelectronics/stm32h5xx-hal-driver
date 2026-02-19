@@ -727,7 +727,8 @@ typedef  void (*pUSART_CallbackTypeDef)(USART_HandleTypeDef *husart);  /*!< poin
   * @param  __CLOCKSOURCE__ output variable.
   * @retval the USART clocking source, written in __CLOCKSOURCE__.
   */
-#if (defined(STM32H573xx) || defined(STM32H563xx) || defined(STM32H562xx))
+#if defined(STM32H573xx) || defined(STM32H563xx) || defined(STM32H562xx) \
+ || defined(STM32H5E4xx) || defined(STM32H5E5xx) || defined(STM32H5F4xx) || defined(STM32H5F5xx)
 #define USART_GETCLOCKSOURCE(__HANDLE__,__CLOCKSOURCE__)       \
   do {                                                         \
     if((__HANDLE__)->Instance == USART1)                       \
@@ -1094,7 +1095,9 @@ typedef  void (*pUSART_CallbackTypeDef)(USART_HandleTypeDef *husart);  /*!< poin
     }                                                          \
   } while(0U)
 
-#endif /* (defined(STM32H573xx) || defined(STM32H563xx) || defined(STM32H562xx) */
+#endif /* defined(STM32H573xx) || defined(STM32H563xx) || defined(STM32H562xx) ||
+        * defined(STM32H5E4xx) || defined(STM32H5E5xx) || defined(STM32H5F4xx) || defined(STM32H5F5xx)
+        */
 
 /** @brief  Check USART Baud rate.
   * @param  __BAUDRATE__ Baudrate specified by the user.
