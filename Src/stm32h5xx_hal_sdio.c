@@ -1707,7 +1707,6 @@ void HAL_SDIO_IRQHandler(SDIO_HandleTypeDef *hsdio)
       }
 
       hsdio->Context = SDIO_CONTEXT_NONE;
-      hsdio->State = HAL_SDIO_STATE_READY;
     }
 
     if (hsdio->remaining_data != 0U)
