@@ -3925,6 +3925,9 @@ static void SPI_CloseTransfer(SPI_HandleTypeDef *hspi)
   __HAL_SPI_CLEAR_TXTFFLAG(hspi);
 
   /* Disable SPI peripheral */
+  int32_t timeout = 1000;
+  while ((hspi->Instance->SR & SPI_SR_TXC) == 0)
+    if (timeout-- <= 0) break;
   __HAL_SPI_DISABLE(hspi);
 
   /* Disable ITs */
