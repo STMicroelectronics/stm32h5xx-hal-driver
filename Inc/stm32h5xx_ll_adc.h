@@ -3415,11 +3415,52 @@ __STATIC_INLINE void LL_ADC_DisableChannelVDDcore(ADC_TypeDef *ADCx)
 }
 #endif /* ADC2 */
 
+#if defined (ADC2)
 /**
   * @brief  Enable Channel 0 GPIO switch control.
   * @note   On this STM32 series, Channel 0 channel connection to GPIO is controlled via specific register.
   * @note   On this STM32 series, Channel 0 GPIO switch control must be enabled when INP0 is used.
-  * @note   On this STM32 series, LL_ADC_EnableChannel0_GPIO available on all instances but ADC2.
+  * @rmtoll OR       OP0       LL_ADC_EnableChannel0_GPIO
+  * @param  ADCx ADC instance
+  * @retval None
+  */
+__STATIC_INLINE void LL_ADC_EnableChannel0_GPIO(ADC_TypeDef *ADCx)
+{
+  if (ADCx == ADC2)
+  {
+    /* ADC2_INP0 switch is controlled by ADC1 */
+    SET_BIT(ADC1->OR, ADC_OR_OP0);
+  }
+  else
+  {
+    SET_BIT(ADCx->OR, ADC_OR_OP0);
+  }
+}
+
+/**
+  * @brief  Disable Channel 0 GPIO switch control.
+  * @note   On this STM32 series, Channel 0 connection to GPIO is controlled via specific register.
+  * @rmtoll OR       OP0       LL_ADC_DisableChannel0_GPIO
+  * @param  ADCx ADC instance
+  * @retval None
+  */
+__STATIC_INLINE void LL_ADC_DisableChannel0_GPIO(ADC_TypeDef *ADCx)
+{
+  if (ADCx == ADC2)
+  {
+    /* ADC2_INP0 switch is controlled by ADC1 */
+    CLEAR_BIT(ADC1->OR, ADC_OR_OP0);
+  }
+  else
+  {
+    CLEAR_BIT(ADCx->OR, ADC_OR_OP0);
+  }
+}
+#else
+/**
+  * @brief  Enable Channel 0 GPIO switch control.
+  * @note   On this STM32 series, Channel 0 channel connection to GPIO is controlled via specific register.
+  * @note   On this STM32 series, Channel 0 GPIO switch control must be enabled when INP0 is used.
   * @rmtoll OR       OP0       LL_ADC_EnableChannel0_GPIO
   * @param  ADCx ADC instance
   * @retval None
@@ -3432,7 +3473,6 @@ __STATIC_INLINE void LL_ADC_EnableChannel0_GPIO(ADC_TypeDef *ADCx)
 /**
   * @brief  Disable Channel 0 GPIO switch control.
   * @note   On this STM32 series, Channel 0 connection to GPIO is controlled via specific register.
-  * @note   On this STM32 series, LL_ADC_DisableChannel0_GPIO available on all instances but ADC2.
   * @rmtoll OR       OP0       LL_ADC_DisableChannel0_GPIO
   * @param  ADCx ADC instance
   * @retval None
@@ -3441,6 +3481,7 @@ __STATIC_INLINE void LL_ADC_DisableChannel0_GPIO(ADC_TypeDef *ADCx)
 {
   CLEAR_BIT(ADCx->OR, ADC_OR_OP0);
 }
+#endif /* ADC2 */
 
 /**
   * @brief  Set ADC calibration factor in the mode single-ended
