@@ -1077,6 +1077,7 @@ HAL_StatusTypeDef HAL_ETH_ReadData(ETH_HandleTypeDef *heth, void **pAppBuff)
   uint32_t desccntmax;
   uint32_t bufflength;
   uint8_t rxdataready = 0U;
+  uint8_t rxcontextfound = 0U;
 
   if (pAppBuff == NULL)
   {
@@ -1088,6 +1089,9 @@ HAL_StatusTypeDef HAL_ETH_ReadData(ETH_HandleTypeDef *heth, void **pAppBuff)
   {
     return HAL_ERROR;
   }
+
+  heth->RxDescList.TimeStamp.TimeStampHigh = UINT32_MAX;
+  heth->RxDescList.TimeStamp.TimeStampLow = UINT32_MAX;
 
   descidx = heth->RxDescList.RxDescIdx;
   dmarxdesc = (ETH_DMADescTypeDef *)heth->RxDescList.RxDesc[descidx];
@@ -1126,8 +1130,10 @@ HAL_StatusTypeDef HAL_ETH_ReadData(ETH_HandleTypeDef *heth, void **pAppBuff)
 
           dmarxdesc_next = (ETH_DMADescTypeDef *)heth->RxDescList.RxDesc[descidx_next];
 
-          if (READ_BIT(dmarxdesc_next->DESC3, ETH_DMARXNDESCWBF_CTXT) != (uint32_t)RESET)
+          if ((READ_BIT(dmarxdesc_next->DESC3, ETH_DMARXNDESCWBF_OWN) == (uint32_t)RESET) &&
+              (READ_BIT(dmarxdesc_next->DESC3, ETH_DMARXNDESCWBF_CTXT) != (uint32_t)RESET))
           {
+            rxcontextfound = 1U;
             /* Get timestamp high */
             heth->RxDescList.TimeStamp.TimeStampHigh = dmarxdesc_next->DESC1;
             /* Get timestamp low */
@@ -1158,6 +1164,14 @@ HAL_StatusTypeDef HAL_ETH_ReadData(ETH_HandleTypeDef *heth, void **pAppBuff)
     /* Get current descriptor address */
     dmarxdesc = (ETH_DMADescTypeDef *)heth->RxDescList.RxDesc[descidx];
     desccnt++;
+
+    if (rxcontextfound != 0U)
+    {
+      INCR_RX_DESC_INDEX(descidx, 1U);
+      dmarxdesc = (ETH_DMADescTypeDef *)heth->RxDescList.RxDesc[descidx];
+      desccnt++;
+      rxcontextfound = 0U;
+    }
   }
 
   heth->RxDescList.RxBuildDescCnt += desccnt;
