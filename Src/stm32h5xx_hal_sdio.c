@@ -228,21 +228,21 @@
 /** @addtogroup SDIO_Private_Defines
   * @{
   */
-#define SDIO_INIT_FREQ         400000UL /*!< Initialization phase : 400 kHz max */
-#define SDIO_TIMEOUT           1000UL   /*!< SDIO timeout millisecond           */
+#define SDIO_INIT_FREQ         400000U /*!< Initialization phase : 400 kHz max */
+#define SDIO_TIMEOUT           1000U   /*!< SDIO timeout millisecond           */
 
-#define SDIO_FUNCTION_0        0x00UL   /*!< SDIO_Functions 0                   */
-#define SDIO_FUNCTION_1        0x01UL   /*!< SDIO_Functions 1                   */
+#define SDIO_FUNCTION_0        0x00UL  /*!< SDIO_Functions 0                   */
+#define SDIO_FUNCTION_1        0x01UL  /*!< SDIO_Functions 1                   */
 
-#define SDIO_READ              0x0UL    /*!< Read flag for cmd52 and cmd53      */
-#define SDIO_WRITE             0x1UL    /*!< Write flag for cmd52 and cmd53     */
+#define SDIO_READ              0x0UL   /*!< Read flag for cmd52 and cmd53      */
+#define SDIO_WRITE             0x1UL   /*!< Write flag for cmd52 and cmd53     */
 
-#define SDIO_BUS_SPEED_SDR12   0x00UL   /*!< SDIO bus speed mode SDR12          */
-#define SDIO_BUS_SPEED_SDR25   0x02UL   /*!< SDIO bus speed mode SDR25          */
-#define SDIO_BUS_SPEED_SDR50   0x04UL   /*!< SDIO bus speed mode SDR50          */
-#define SDIO_BUS_SPEED_DDR50   0x08UL   /*!< SDIO bus speed mode DDR50          */
+#define SDIO_BUS_SPEED_SDR12   0x00U   /*!< SDIO bus speed mode SDR12          */
+#define SDIO_BUS_SPEED_SDR25   0x02U   /*!< SDIO bus speed mode SDR25          */
+#define SDIO_BUS_SPEED_SDR50   0x04U   /*!< SDIO bus speed mode SDR50          */
+#define SDIO_BUS_SPEED_DDR50   0x08U   /*!< SDIO bus speed mode DDR50          */
 
-#define SDIO_CCCR_REG_NUMBER   0x16UL   /*!< SDIO card cccr register number     */
+#define SDIO_CCCR_REG_NUMBER   0x16U   /*!< SDIO card cccr register number     */
 
 #define SDIO_OCR_VDD_32_33     (1UL << 20U)
 #define SDIO_OCR_SDIO_S18R     (1UL << 24U)
@@ -2530,7 +2530,7 @@ static HAL_StatusTypeDef SDIO_InitCard(SDIO_HandleTypeDef *hsdio)
   uint32_t errorstate;
   uint32_t timeout = 0U;
   uint16_t sdio_rca = 1U;
-  uint32_t Resp4;
+  uint32_t Resp4 = 0U;
   uint32_t nbr_of_func;
 
   /* Identify card operating voltage */
@@ -2871,7 +2871,7 @@ static uint8_t SDIO_Convert_Block_Size(const SDIO_HandleTypeDef *hsdio, uint32_t
 static HAL_StatusTypeDef SDIO_IOFunction_IRQHandler(SDIO_HandleTypeDef *hsdio)
 {
   uint8_t count;
-  uint8_t pendingInt;
+  uint8_t pendingInt = 0U;
 
   if (hsdio->IOInterruptNbr == 1U)
   {

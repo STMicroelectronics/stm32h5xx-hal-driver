@@ -2049,13 +2049,11 @@ uint32_t HAL_NAND_Address_Inc(const NAND_HandleTypeDef *hnand, NAND_AddressTypeD
   * @param hnand : NAND handle
   * @param CallbackId : ID of the callback to be registered
   *        This parameter can be one of the following values:
-  *          @arg @ref HAL_NAND_MSP_INIT_CB_ID       NAND MspInit callback ID (*)
-  *          @arg @ref HAL_NAND_MSP_DEINIT_CB_ID     NAND MspDeInit callback ID (*)
-  *          @arg @ref HAL_NAND_IT_CB_ID             NAND IT callback ID (*)
+  *          @arg @ref HAL_NAND_MSP_INIT_CB_ID       NAND MspInit callback ID
+  *          @arg @ref HAL_NAND_MSP_DEINIT_CB_ID     NAND MspDeInit callback ID
+  *          @arg @ref HAL_NAND_IT_CB_ID             NAND IT callback ID
   * @param pCallback : pointer to the Callback function
   * @retval status
-  *
-  * (*) : For all h5 series
   */
 HAL_StatusTypeDef HAL_NAND_RegisterCallback(NAND_HandleTypeDef *hnand, HAL_NAND_CallbackIDTypeDef CallbackId,
                                             pNAND_CallbackTypeDef pCallback)
@@ -2117,12 +2115,10 @@ HAL_StatusTypeDef HAL_NAND_RegisterCallback(NAND_HandleTypeDef *hnand, HAL_NAND_
   * @param hnand : NAND handle
   * @param CallbackId : ID of the callback to be unregistered
   *        This parameter can be one of the following values:
-  *          @arg @ref HAL_NAND_MSP_INIT_CB_ID       NAND MspInit callback ID (*)
-  *          @arg @ref HAL_NAND_MSP_DEINIT_CB_ID     NAND MspDeInit callback ID (*)
-  *          @arg @ref HAL_NAND_IT_CB_ID             NAND IT callback ID (*)
+  *          @arg @ref HAL_NAND_MSP_INIT_CB_ID       NAND MspInit callback ID
+  *          @arg @ref HAL_NAND_MSP_DEINIT_CB_ID     NAND MspDeInit callback ID
+  *          @arg @ref HAL_NAND_IT_CB_ID             NAND IT callback ID
   * @retval status
-  *
-  * (*) : For all h5 series
   */
 HAL_StatusTypeDef HAL_NAND_UnRegisterCallback(NAND_HandleTypeDef *hnand, HAL_NAND_CallbackIDTypeDef CallbackId)
 {

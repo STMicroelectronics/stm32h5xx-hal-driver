@@ -654,7 +654,7 @@ HAL_StatusTypeDef HAL_NOR_Read(NOR_HandleTypeDef *hnor, uint32_t *pAddress, uint
     if (status != HAL_ERROR)
     {
       /* Read the data */
-      *pData = *(__IO uint16_t *)pAddress;
+      *pData = NOR_READ(pAddress);
     }
 
     /* Check the NOR controller state */
@@ -1203,12 +1203,10 @@ HAL_StatusTypeDef HAL_NOR_Read_CFI(NOR_HandleTypeDef *hnor, NOR_CFITypeDef *pNOR
   * @param hnor : NOR handle
   * @param CallbackId : ID of the callback to be registered
   *        This parameter can be one of the following values:
-  *          @arg @ref HAL_NOR_MSP_INIT_CB_ID       NOR MspInit callback ID (*)
-  *          @arg @ref HAL_NOR_MSP_DEINIT_CB_ID     NOR MspDeInit callback ID (*)
+  *          @arg @ref HAL_NOR_MSP_INIT_CB_ID       NOR MspInit callback ID
+  *          @arg @ref HAL_NOR_MSP_DEINIT_CB_ID     NOR MspDeInit callback ID
   * @param pCallback : pointer to the Callback function
   * @retval status
-  *
-  * (*) : For all h5 series
   */
 HAL_StatusTypeDef HAL_NOR_RegisterCallback(NOR_HandleTypeDef *hnor, HAL_NOR_CallbackIDTypeDef CallbackId,
                                            pNOR_CallbackTypeDef pCallback)
@@ -1253,11 +1251,9 @@ HAL_StatusTypeDef HAL_NOR_RegisterCallback(NOR_HandleTypeDef *hnor, HAL_NOR_Call
   * @param hnor : NOR handle
   * @param CallbackId : ID of the callback to be unregistered
   *        This parameter can be one of the following values:
-  *          @arg @ref HAL_NOR_MSP_INIT_CB_ID       NOR MspInit callback ID (*)
-  *          @arg @ref HAL_NOR_MSP_DEINIT_CB_ID     NOR MspDeInit callback ID (*)
+  *          @arg @ref HAL_NOR_MSP_INIT_CB_ID       NOR MspInit callback ID
+  *          @arg @ref HAL_NOR_MSP_DEINIT_CB_ID     NOR MspDeInit callback ID
   * @retval status
-  *
-  * (*) : For all h5 series
   */
 HAL_StatusTypeDef HAL_NOR_UnRegisterCallback(NOR_HandleTypeDef *hnor, HAL_NOR_CallbackIDTypeDef CallbackId)
 {
