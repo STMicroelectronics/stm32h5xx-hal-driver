@@ -1702,7 +1702,7 @@ HAL_StatusTypeDef HAL_ETH_PTP_SetTime(ETH_HandleTypeDef *heth, ETH_TimeTypeDef *
     heth->Instance->MACSTNUR = time->NanoSeconds;
 
     /* the system time is updated */
-    SET_BIT(heth->Instance->MACTSCR, ETH_MACTSCR_TSUPDT);
+    SET_BIT(heth->Instance->MACTSCR, ETH_MACTSCR_TSINIT);
 
     /* Return function status */
     return HAL_OK;
