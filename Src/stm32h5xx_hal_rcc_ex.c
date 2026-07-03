@@ -2571,7 +2571,7 @@ HAL_StatusTypeDef HAL_RCCEx_PeriphCLKConfig(const RCC_PeriphCLKInitTypeDef  *pPe
 
       case RCC_OTGHSCLKSOURCE_PLL1Q_DIV2:  /* PLL1 Q div 2 is used as clock source for USB_OTG_HS */
         /* Enable PLL1 Clock output generated from System PLL . */
-        __HAL_RCC_PLLCLKOUT_ENABLE(RCC_PLL1_DIVQ);
+        __HAL_RCC_PLL1_CLKOUT_ENABLE(RCC_PLL1_DIVQ);
         /* USB_OTG_HS clock source configuration done later after clock selection check */
         break;
       default:
@@ -2687,7 +2687,7 @@ HAL_StatusTypeDef HAL_RCCEx_PeriphCLKConfig(const RCC_PeriphCLKInitTypeDef  *pPe
     {
       case RCC_MDF1CLKSOURCE_PLL1Q:         /* PLL1 Q is used as clock source for MDF1 */
         /* Enable PLL1 Clock output generated from System PLL  */
-        __HAL_RCC_PLLCLKOUT_ENABLE(RCC_PLL1_DIVQ);
+        __HAL_RCC_PLL1_CLKOUT_ENABLE(RCC_PLL1_DIVQ);
         break;
       case RCC_MDF1CLKSOURCE_PLL2P:         /* PLL2 P is used as clock source for MDF1 */
         /* PLL2 P input clock, parameters M, N & P configuration and clock output (PLL2ClockOut) */
@@ -2736,7 +2736,7 @@ HAL_StatusTypeDef HAL_RCCEx_PeriphCLKConfig(const RCC_PeriphCLKInitTypeDef  *pPe
         break;
       case RCC_ETHCLKSOURCE_PLL1Q:          /* PLL1 Q is used as clock source for ETH */
         /* Enable PLL1 Clock output generated from System PLL  */
-        __HAL_RCC_PLLCLKOUT_ENABLE(RCC_PLL1_DIVQ);
+        __HAL_RCC_PLL1_CLKOUT_ENABLE(RCC_PLL1_DIVQ);
         /* ETH clock source configuration done later after clock selection check */
         break;
       default:
@@ -2767,7 +2767,7 @@ HAL_StatusTypeDef HAL_RCCEx_PeriphCLKConfig(const RCC_PeriphCLKInitTypeDef  *pPe
     {
       case RCC_ADF1CLKSOURCE_PLL1Q:         /* PLL1 Q is used as clock source for ADF1 */
         /* Enable PLL1 Clock output generated from System PLL  */
-        __HAL_RCC_PLLCLKOUT_ENABLE(RCC_PLL1_DIVQ);
+        __HAL_RCC_PLL1_CLKOUT_ENABLE(RCC_PLL1_DIVQ);
         /* ADF1 clock source configuration done later after clock selection check */
         break;
       case RCC_ADF1CLKSOURCE_PLL2P:         /* PLL2 P is used as clock source for ADF1 */
@@ -2817,12 +2817,12 @@ HAL_StatusTypeDef HAL_RCCEx_PeriphCLKConfig(const RCC_PeriphCLKInitTypeDef  *pPe
         break;
       case RCC_ETHPTPCLKSOURCE_PLL1R:       /* PLL1 R is used as clock source for ETHPTP */
         /* Enable PLL1 Clock output generated from System PLL  */
-        __HAL_RCC_PLLCLKOUT_ENABLE(RCC_PLL1_DIVR);
+        __HAL_RCC_PLL1_CLKOUT_ENABLE(RCC_PLL1_DIVR);
         /* ETHPTP clock source configuration done later after clock selection check */
         break;
       case RCC_ETHPTPCLKSOURCE_PLL1Q:       /* PLL1 Q is used as clock source for ETHPTP */
         /* Enable PLL1 Clock output generated from System PLL  */
-        __HAL_RCC_PLLCLKOUT_ENABLE(RCC_PLL1_DIVQ);
+        __HAL_RCC_PLL1_CLKOUT_ENABLE(RCC_PLL1_DIVQ);
         /* ETHPTP clock source configuration done later after clock selection check */
         break;
 #if defined(RCC_ETHPTPCLKSOURCE_PLL3P)
@@ -2863,11 +2863,11 @@ HAL_StatusTypeDef HAL_RCCEx_PeriphCLKConfig(const RCC_PeriphCLKInitTypeDef  *pPe
     {
       case RCC_ETHREFCLKSOURCE_PLL1Q:       /* PLL1 Q is used as clock source for ETHREF */
         /* Enable PLL1 Clock output generated from System PLL  */
-        __HAL_RCC_PLLCLKOUT_ENABLE(RCC_PLL1_DIVQ);
+        __HAL_RCC_PLL1_CLKOUT_ENABLE(RCC_PLL1_DIVQ);
         break;
       case RCC_ETHREFCLKSOURCE_PLL1R:       /* PLL1 R is used as clock source for ETHREF */
         /* Enable PLL1 Clock output generated from System PLL  */
-        __HAL_RCC_PLLCLKOUT_ENABLE(RCC_PLL1_DIVR);
+        __HAL_RCC_PLL1_CLKOUT_ENABLE(RCC_PLL1_DIVR);
         break;
       default:
         ret = HAL_ERROR;
