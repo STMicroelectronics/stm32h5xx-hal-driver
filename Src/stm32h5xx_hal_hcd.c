@@ -2055,7 +2055,7 @@ static void HCD_HC_OUT_BulkDb(HCD_HandleTypeDef *hhcd, uint8_t ch_num, uint8_t p
 
 static uint16_t HAL_HCD_GetFreePMA(HCD_HandleTypeDef *hhcd, uint16_t mps);
 static HAL_StatusTypeDef  HAL_HCD_PMAFree(HCD_HandleTypeDef *hhcd, uint32_t pma_base, uint16_t mps);
-inline static void HCD_HC_IN_ISO(HCD_HandleTypeDef *hhcd, uint8_t ch_num, uint8_t phy_chnum, uint32_t regvalue);
+static inline void HCD_HC_IN_ISO(HCD_HandleTypeDef *hhcd, uint8_t ch_num, uint8_t phy_chnum, uint32_t regvalue);
 /**
   * @}
   */
@@ -3762,7 +3762,7 @@ static void HCD_HC_IN_BulkDb(HCD_HandleTypeDef *hhcd,
   * @param  regvalue contain Snapshot of the EPCHn register when ISR is detected
   * @retval none
   */
-inline static void HCD_HC_IN_ISO(HCD_HandleTypeDef *hhcd, uint8_t ch_num,
+static inline void HCD_HC_IN_ISO(HCD_HandleTypeDef *hhcd, uint8_t ch_num,
                                  uint8_t phy_chnum, uint32_t regvalue)
 {
   /* Check if Double buffer isochronous */
