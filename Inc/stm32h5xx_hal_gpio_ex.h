@@ -80,6 +80,10 @@ extern "C" {
 #if defined(ADF1)
 #define GPIO_AF1_ADF1         ((uint8_t)0x01)   /* ADF1 Alternate Function mapping                            */
 #endif /* ADF1 */
+#if defined(PLAY1)
+#define GPIO_AF1_PLAY1_OUT    ((uint8_t)0x01)  /* PLAY1_OUT Alternate Function mapping                       */
+#endif /* PLAY1 */
+
 
 /**
   * @brief   AF 2 selection
@@ -114,6 +118,9 @@ extern "C" {
 #define GPIO_AF2_TIM13         ((uint8_t)0x02)  /* TIM13 Alternate Function mapping                          */
 #define GPIO_AF2_TIM14         ((uint8_t)0x02)  /* TIM14 Alternate Function mapping                          */
 #endif /* STM32H5F5xx || STM32H5F4xx || STM32H5E5xx || STM32H5E4xx */
+#if defined(PLAY1)
+#define GPIO_AF2_PLAY1_IN       ((uint8_t)0x02)  /* PLAY1_IN Alternate Function mapping                       */
+#endif /* PLAY1 */
 
 /**
   * @brief   AF 3 selection
@@ -351,7 +358,6 @@ extern "C" {
 #if defined(MDF1)
 #define GPIO_AF8_MDF1          ((uint8_t)0x08)  /* MDF1 Alternate Function mapping                           */
 #endif /* MDF1 */
-
 /**
   * @brief   AF 9 selection
   */
