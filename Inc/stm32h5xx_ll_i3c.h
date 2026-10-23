@@ -286,8 +286,6 @@ typedef struct
 /**
   * @}
   */
-
-
 #if defined(I3C_CFGR_FCFDIS)
 
 /** @defgroup I3C_LL_EC_End_Of_FrameCompletion End of Frame completion
@@ -300,7 +298,6 @@ typedef struct
 /**
   * @}
   */
-
 #endif /* I3C_CFGR_FCFDIS */
 
 /** @defgroup I3C_LL_EC_PAYLOAD PAYLOAD

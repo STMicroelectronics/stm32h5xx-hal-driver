@@ -74,7 +74,8 @@ typedef struct
                                  This parameter is configured only with controller mode and it
                                  must be a value of @ref I3C_CONTROL_FIFO_STATE                                       */
 
-  uint32_t StatusFifo;      /*!< Specifies the I3C status FIFO enable/disable state.
+  uint32_t StatusFifo;      /*!< This parameter is deprecated.
+                                 Specifies the I3C status FIFO enable/disable state.
                                  This parameter is configured only with controller mode and it
                                  must be a value of @ref I3C_STATUS_FIFO_STATE                                        */
 } I3C_FifoConfTypeDef;
@@ -425,7 +426,8 @@ typedef struct
 typedef struct
 {
   I3C_ControlTypeDef CtrlBuf;      /*!< Buffer structure containing the control register values  */
-  I3C_ControlTypeDef StatusBuf;    /*!< Buffer structure containing the status register values   */
+  I3C_ControlTypeDef StatusBuf;    /*!< This parameter is deprecated.
+                                        Buffer structure containing the status register values   */
   I3C_DataTypeDef    TxBuf;        /*!< Buffer structure containing the data to transmit         */
   I3C_DataTypeDef    RxBuf;        /*!< Buffer structure containing the data to receive          */
 
@@ -471,7 +473,8 @@ typedef struct __I3C_HandleTypeDef
 
   DMA_HandleTypeDef          *hdmarx;                             /*!< I3C Rx DMA handle parameters              */
 
-  DMA_HandleTypeDef          *hdmasr;                             /*!< I3C status DMA handle parameters          */
+  DMA_HandleTypeDef          *hdmasr;                             /*!< This parameter is deprecated.
+                                                                       I3C status DMA handle parameters          */
 #endif /* HAL_DMA_MODULE_ENABLED */
 
   HAL_LockTypeDef            Lock;                                /*!< I3C locking object                        */
@@ -824,8 +827,8 @@ typedef  void (*pI3C_TgtReqDynamicAddrCallbackTypeDef)(I3C_HandleTypeDef *hi3c, 
 /** @defgroup I3C_STATUS_FIFO_STATE STATUS FIFO STATE
   * @{
   */
-#define HAL_I3C_STATUSFIFO_DISABLE  0x00000000U      /*!< Status FIFO mode disable */
-#define HAL_I3C_STATUSFIFO_ENABLE   I3C_CFGR_SMODE   /*!< Status FIFO mode enable  */
+#define HAL_I3C_STATUSFIFO_DISABLE  0x00000000U      /*!< This parameter is deprecated. Status FIFO mode disable */
+#define HAL_I3C_STATUSFIFO_ENABLE   I3C_CFGR_SMODE   /*!< This parameter is deprecated. Status FIFO mode enable  */
 /**
   * @}
   */
